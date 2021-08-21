@@ -41,3 +41,32 @@ exports.createBlogPost = (req, res, next) => {
         console.log('err >>', err)
     });
 }
+
+exports.getAllBlogPost = (req, res, next) => {
+    BlogPost.find()
+    .then(result => {
+        res.status(200).json({
+            message: 'Data blog post berhasil dipanggil',
+            data: result
+        })
+    })
+    .catch(err => next(err))
+}
+
+exports.getAllBlogPostById = (req, res, next) => {
+    const postId = req.params.postId;
+
+    BlogPost.findById(postId)
+    .then(result => {
+        if(!result) {
+            const error = new Error('Blog post tidak ditemukan.');
+            error.errorStatus = 400;
+            throw err;
+        }
+        res.status(200).json({
+            message: 'Data blog post berhasil dipanggil',
+            data: result
+        })
+    })
+    .catch(err => next(err))
+}

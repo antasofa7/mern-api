@@ -10,4 +10,7 @@ router.post('/post', [
     body('body').isLength({min: 5}).withMessage('Input body minimal 5 karakter.')
 ], blogController.createBlogPost);
 
+router.get('/posts', blogController.getAllBlogPost);
+router.get('/posts/:postId', blogController.getAllBlogPostById)
+
 module.exports = router;
