@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const multer = require('multer')
+const multer = require('multer');
+const path = require('path');
 // const { MongoClient } = require('mongodb');
 // const uri = "mongodb+srv://antasofa:CQU6uVKyr0G5idgl@cluster0.tt0ro.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -26,7 +27,8 @@ const fileFilter = (req, file, cb) => {
 }
 
 app.use(bodyParser.json());
-app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'))
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
