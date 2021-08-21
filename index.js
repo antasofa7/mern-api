@@ -33,7 +33,7 @@ app.use((error, req, res, next) => {
     })
 })
 
-mongoose.connect('mongodb+srv://antasofa:CQU6uVKyr0G5idgl@cluster0.tt0ro.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://antasofa:CQU6uVKyr0G5idgl@cluster0.tt0ro.mongodb.net/blog?retryWrites=true&w=majority',
 { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     app.listen(4000, () => console.log('Connection success'));
